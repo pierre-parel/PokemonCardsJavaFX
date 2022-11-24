@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" scaleX="0.95" scaleY="0.95" style="-fx-background-color: F9FAFA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pierreparel.pokemoncardsjavafx.AppController">
+   <children>
+      <ImageView fitHeight="890.0" fitWidth="1651.0" layoutX="-319.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background-image.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffffb6" height="500.0" layoutX="28.0" layoutY="78.0" stroke="#4f4f4ff8" strokeLineJoin="ROUND" strokeWidth="10.0" width="947.0" />
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="464.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/pokeball.png" />
+         </image>
+      </ImageView>
+      <Group layoutX="85.0" layoutY="600.0">
+         <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffffd6" height="150.0" strokeLineJoin="ROUND" strokeWidth="10.0" width="831.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.3782407343387604" green="0.26851850748062134" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.2787036895751953" green="0.19785575568675995" blue="0.7368420958518982" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.2563840235717793">
+                           <color>
+                              <Color red="0.20467835664749146" green="0.12280701845884323" blue="0.7368420958518982" opacity="0.9700000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5012276968407268">
+                           <color>
+                              <Color red="0.19797758758068085" green="0.4126055836677551" blue="0.6578947305679321" opacity="0.9700000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.7485063021771157">
+                           <color>
+                              <Color red="0.14315302670001984" green="0.6184210777282715" blue="0.5946576595306396" opacity="0.9700000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.40789473056793213" green="0.7105262875556946" blue="0.5793859362602234" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Text layoutX="47.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate a Random Pokemon Card">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click the button to display a random Pokemon Card from the deck!" textAlignment="JUSTIFY" wrappingWidth="750.0">
+               <font>
+                  <Font name="Gill Sans MT" size="22.0" />
+               </font>
+            </Text>
+            <Button fx:id="randomPokemonButton" layoutX="323.0" layoutY="94.0" mnemonicParsing="false" onAction="#generateRandomCard" prefHeight="39.0" prefWidth="195.0" text="Generate Random Pokemon">
+               <font>
+                  <Font name="Gill Sans MT" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Group>
+      <StackPane layoutX="541.0" layoutY="110.0">
+         <children>
+            <ImageView fx:id="displayRandBackground" fitHeight="430.0" fitWidth="411.0" pickOnBounds="true" />
+            <ImageView fx:id="displayRandPokemon" fitHeight="193.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER_LEFT" layoutX="80.0" layoutY="114.0" prefHeight="392.0" prefWidth="84.0" spacing="40.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Height:">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight:">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type:">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attack">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Defense">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Speed">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="209.0" layoutY="114.0" prefHeight="179.0" prefWidth="322.0" spacing="40.0">
+         <children>
+            <Text fx:id="displayRandName" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="displayRandHeight" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="displayRandWeight" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <Rectangle fx:id="attackBackgroundRand" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="381.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <Rectangle fx:id="defenseBackground" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="449.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <Rectangle fx:id="speedBackground" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="516.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <ImageView fx:id="backButton" fitHeight="54.0" fitWidth="51.0" layoutX="21.0" layoutY="14.0" onMouseClicked="#backButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/arrow-button.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="attackFillRand" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="381.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <Rectangle fx:id="defenseFillRand" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="449.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <Rectangle fx:id="speedFillRand" arcHeight="10.0" arcWidth="10.0" fill="#00000080" height="24.0" layoutX="208.0" layoutY="516.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+      <Rectangle fx:id="type1ChipRand" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="33.0" layoutX="209.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="80.0" />
+      <Rectangle fx:id="type2ChipRand" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="33.0" layoutX="304.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="80.0" />
+      <Text fx:id="type1TextRand" fill="WHITE" layoutX="209.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dragon" textAlignment="CENTER" visible="false" wrappingWidth="79.80000000000018">
+         <font>
+            <Font name="Gill Sans MT Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="type2TextRand" fill="WHITE" layoutX="304.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dragon" textAlignment="CENTER" visible="false" wrappingWidth="79.80000000000018">
+         <font>
+            <Font name="Gill Sans MT Bold" size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
