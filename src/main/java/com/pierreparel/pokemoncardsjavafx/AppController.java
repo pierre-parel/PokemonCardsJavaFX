@@ -1,6 +1,7 @@
 package com.pierreparel.pokemoncardsjavafx;
 
-import javafx.event.ActionEvent;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +15,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 
 public class AppController {
@@ -166,6 +169,7 @@ public class AppController {
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(mainLoader.load());
+        timeline.stop();
     }
 
     // SEARCH PAGE
@@ -187,7 +191,7 @@ public class AppController {
             resetSearchPage();
         }
     }
-    public void removePokemon(ActionEvent actionEvent) {
+    public void removePokemon() {
         int index = pokemonDeck.searchPokemon(pokemonRemoveSearch.getText());
 
         if (index != -1){
@@ -636,11 +640,17 @@ public class AppController {
         type2TextSlide.setVisible(true);
 
     }
-    public void startSlideshow() {
-        for(int i = 0; i < pokemonDeck.getSize(); i++){
-            showSlidePokemon(pokemonDeck.getPokemon(i));
 
-        }
+    int i;
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        showSlidePokemon(pokemonDeck.getPokemon(i));
+        i++;
+    }));
+
+    public void startSlideshow() {
+        i = 0;
+        timeline.setCycleCount(pokemonDeck.getSize());
+        timeline.play();
     }
 
     // END OF SLIDESHOW PAGE
