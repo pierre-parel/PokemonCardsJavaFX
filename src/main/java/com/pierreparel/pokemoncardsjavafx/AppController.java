@@ -21,10 +21,16 @@ import java.io.IOException;
 
 public class AppController {
 
-    PokemonCards pokemonDeck = PokemonCardCollection.getPokemonDeck();
+    // END OF SLIDESHOW PAGE
+    private final Image WaterBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/WaterBG.gif");
+    private final Image DragonBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/DragonBG.jpg");
+    private final Image ElectricBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/ElectricBG.jpg");
+    private final Image FireBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/FireBG.png");
+    private final Image NormalBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/NormalBG.png");
+    private final Image PsychicBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/PsychicBG.jpg");
+    private final Image IceBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/IceBG.png");
+    private final Image RockBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/RockBG.jpg");
     public TextField pokemonNameSearch;
-    private Stage stage;
-
     // SEARCH PAGE
     @FXML
     public Text displayName;
@@ -32,51 +38,28 @@ public class AppController {
     public Text displayHeight;
     @FXML
     public Text displayWeight;
-
     @FXML
     public Rectangle attackFill;
     @FXML
     public ImageView displayBackground;
     @FXML
     public ImageView displayPokemon;
-    @FXML
-    private Rectangle defenseFill;
-    @FXML
-    private Rectangle speedFill;
-    @FXML
-    private Rectangle type1Chip;
-    @FXML
-    private Rectangle type2Chip;
-    @FXML
-    private Text type1Text;
-    @FXML
-    private Text type2Text;
 
     // END OF SEARCH PAGE
-
-    // REMOVE PAGE
-    @FXML
-    private TextField pokemonRemoveSearch;
-    @FXML
-    private Label removeNotif;
-
-    // END OF REMOVE PAGE
-
-    // RANDOM PAGE
-
     @FXML
     public Text displayRandName;
     @FXML
     public Text displayRandHeight;
+
+    // END OF REMOVE PAGE
+
+    // RANDOM PAGE
     @FXML
     public Text displayRandWeight;
-
     @FXML
     public Rectangle attackFillRand;
-
     @FXML
     public ImageView displayRandBackground;
-
     @FXML
     public ImageView displayRandPokemon;
     @FXML
@@ -91,23 +74,19 @@ public class AppController {
     public Text type1TextRand;
     @FXML
     public Text type2TextRand;
-
-    // END OF RANDOM PAGE
-
     // SLIDESHOW PAGE
     @FXML
     public Text displaySlideName;
     @FXML
     public Text displaySlideHeight;
+
+    // END OF RANDOM PAGE
     @FXML
     public Text displaySlideWeight;
-
     @FXML
     public Rectangle attackFillSlide;
-
     @FXML
     public ImageView displaySlideBackground;
-
     @FXML
     public ImageView displaySlidePokemon;
     @FXML
@@ -122,35 +101,48 @@ public class AppController {
     public Text type1TextSlide;
     @FXML
     public Text type2TextSlide;
-    // END OF SLIDESHOW PAGE
-    private final Image WaterBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/WaterBG.gif");
-    private final Image DragonBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/DragonBG.jpg");
-    private final Image ElectricBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/ElectricBG.jpg");
-    private final Image FireBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/FireBG.png");
-    private final Image NormalBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/NormalBG.png");
-    private final Image PsychicBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/PsychicBG.jpg");
-    private final Image IceBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/IceBG.png");
-    private final Image RockBG = new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/bg/RockBG.jpg");
+    PokemonCards pokemonDeck = PokemonCardCollection.getPokemonDeck();
+    int i;
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        showSlidePokemon(pokemonDeck.getPokemon(i));
+        i++;
+    }));
+    private Stage stage;
+    @FXML
+    private Rectangle defenseFill;
+    @FXML
+    private Rectangle speedFill;
+    @FXML
+    private Rectangle type1Chip;
+    @FXML
+    private Rectangle type2Chip;
+    @FXML
+    private Text type1Text;
+    @FXML
+    private Text type2Text;
+    // REMOVE PAGE
+    @FXML
+    private TextField pokemonRemoveSearch;
+    @FXML
+    private Label removeNotif;
 
-
-    // MAIN MENU
     public void searchButtonClicked(MouseEvent mouseEvent) throws IOException {
         FXMLLoader searchLoader = new FXMLLoader(PokemonCardCollection.class.getResource("search-page.fxml"));
-        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(searchLoader.load());
     }
 
     public void removeButtonClicked(MouseEvent mouseEvent) throws IOException {
         FXMLLoader removeLoader = new FXMLLoader(PokemonCardCollection.class.getResource("remove-page.fxml"));
-        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(removeLoader.load());
     }
 
     public void randomButtonClicked(MouseEvent mouseEvent) throws IOException {
         FXMLLoader randomLoader = new FXMLLoader(PokemonCardCollection.class.getResource("random-page.fxml"));
-        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(randomLoader.load());
 
@@ -158,55 +150,38 @@ public class AppController {
 
     public void slideshowButtonClicked(MouseEvent mouseEvent) throws IOException {
         FXMLLoader slideLoader = new FXMLLoader(PokemonCardCollection.class.getResource("slideshow-page.fxml"));
-        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(slideLoader.load());
     }
 
-    // END OF MAIN MENU
     public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(PokemonCardCollection.class.getResource("main-page.fxml"));
-        stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 //        scene = new Scene(searchLoader.load());
         stage.getScene().setRoot(mainLoader.load());
         timeline.stop();
     }
 
-    // SEARCH PAGE
-    public void searchPokemon(){
+    public void searchPokemon() {
         System.out.println("SEARCH THE POKEMON");
         String pokemonName = pokemonNameSearch.getText();
         System.out.println(pokemonName);
 
         int index = pokemonDeck.searchPokemon(pokemonName);
-        if (index != -1){
+        if (index != -1) {
             // POKEMON FOUND
             Pokemon currentPokemon = pokemonDeck.getPokemon(index);
             showPokemon(currentPokemon);
             System.out.println("Pokemon Found!");
-        }
-        else {
+        } else {
             // POKEMON NOT FOUND
             System.out.println("Pokemon NOT Found!");
             resetSearchPage();
         }
     }
-    public void removePokemon() {
-        int index = pokemonDeck.searchPokemon(pokemonRemoveSearch.getText());
 
-        if (index != -1){
-            // POKEMON FOUND
-            pokemonDeck.remove(index);
-            System.out.println("Pokemon Deleted!");
-        }
-        else {
-            // POKEMON NOT FOUND
-            System.out.println("Pokemon NOT Found!");
-            removeNotif.setText( pokemonRemoveSearch.getText() + " cannot found in the database!");
-        }
-
-    }
-    private void showPokemon(Pokemon currentPokemon){
+    private void showPokemon(Pokemon currentPokemon) {
         displayName.setText(currentPokemon.getName());
         displayHeight.setText(currentPokemon.getHeight());
         displayWeight.setText(currentPokemon.getWeight());
@@ -242,17 +217,16 @@ public class AppController {
         speedFill.setStrokeType(StrokeType.INSIDE);
         displayPokemon.setImage(new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/sprites/" + currentPokemon.getName().toLowerCase() + ".gif"));
 
-        if(currentPokemon.getMulticlass()){
+        if (currentPokemon.getMulticlass()) {
             System.out.println("MULTITYPE!");
             showMultiTypePokemon(currentPokemon);
-        }
-        else{
+        } else {
             System.out.println("SINGLE TYPE!");
             showSingleTypePokemon(currentPokemon);
         }
     }
 
-    private void showSingleTypePokemon(Pokemon currentPokemon){
+    private void showSingleTypePokemon(Pokemon currentPokemon) {
         System.out.println("Pokemon is type: " + currentPokemon.getType());
         switch (currentPokemon.getType()) {
             case "Water" -> {
@@ -288,7 +262,8 @@ public class AppController {
         type2Text.setVisible(false);
         type2Chip.setVisible(false);
     }
-    private void showMultiTypePokemon(Pokemon currentPokemon){
+
+    private void showMultiTypePokemon(Pokemon currentPokemon) {
         String[] types = currentPokemon.getType().split("/");
 
         switch (types[0]) {
@@ -318,10 +293,9 @@ public class AppController {
             }
         }
 
-        if(types[1].equals("Flying")){
+        if (types[1].equals("Flying")) {
             type2Chip.setFill(Color.POWDERBLUE);
-        }
-        else if(types[1].equals("Water")){
+        } else if (types[1].equals("Water")) {
             type2Chip.setFill(Color.DARKBLUE);
         }
 
@@ -334,7 +308,8 @@ public class AppController {
         type2Text.setVisible(true);
 
     }
-    private void resetSearchPage(){
+
+    private void resetSearchPage() {
         displayName.setText("-");
         displayHeight.setText("-");
         displayWeight.setText("-");
@@ -372,10 +347,28 @@ public class AppController {
         type2Text.setVisible(false);
     }
 
-    // END OF SEARCH PAGE
+    public void removePokemon() {
+        int index = pokemonDeck.searchPokemon(pokemonRemoveSearch.getText());
 
-    // RANDOM PAGE
-    private void showRandPokemon(Pokemon currentPokemon){
+        if (index != -1) {
+            // POKEMON FOUND
+            pokemonDeck.remove(index);
+            System.out.println("Pokemon Deleted!");
+            removeNotif.setText(pokemonRemoveSearch.getText() + " has now been deleted from the database!");
+        } else {
+            // POKEMON NOT FOUND
+            System.out.println("Pokemon NOT Found!");
+            if (pokemonRemoveSearch.getText().trim().isEmpty() || pokemonRemoveSearch.getText() == null || pokemonRemoveSearch.getText().equals("")) {
+                removeNotif.setText("Please enter a Pokemon Name in the field below.");
+            }
+            else{
+                removeNotif.setText(pokemonRemoveSearch.getText() + " cannot be found in the database!");
+            }
+        }
+        pokemonRemoveSearch.setText("");
+    }
+
+    private void showRandPokemon(Pokemon currentPokemon) {
         displayRandName.setText(currentPokemon.getName());
         displayRandHeight.setText(currentPokemon.getHeight());
         displayRandWeight.setText(currentPokemon.getWeight());
@@ -411,22 +404,61 @@ public class AppController {
         speedFillRand.setStrokeType(StrokeType.INSIDE);
         displayRandPokemon.setImage(new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/sprites/" + currentPokemon.getName().toLowerCase() + ".gif"));
 
-        if(currentPokemon.getMulticlass()){
+        if (currentPokemon.getMulticlass()) {
             System.out.println("MULTITYPE!");
             showRandMultiTypePokemon(currentPokemon);
-        }
-        else{
+        } else {
             System.out.println("SINGLE TYPE!");
             showRandSingleTypePokemon(currentPokemon);
         }
     }
+
     public void generateRandomCard() {
         int rgen = (int) Math.floor(Math.random() * pokemonDeck.getSize());
         Pokemon randomPokemon = pokemonDeck.getPokemon(rgen);
         System.out.println("RANDOM POKEMON IS " + randomPokemon.getName().toUpperCase());
         showRandPokemon(pokemonDeck.getPokemon(rgen));
     }
-    private void showRandMultiTypePokemon(Pokemon currentPokemon){
+
+    private void resetRandomPage() {
+        displayRandName.setText("-");
+        displayRandHeight.setText("-");
+        displayRandWeight.setText("-");
+
+        // ATTACK BAR
+        attackFillRand.setWidth(1);
+        attackFillRand.setArcHeight(10);
+        attackFillRand.setArcWidth(10);
+        attackFillRand.setFill(Color.TRANSPARENT);
+        attackFillRand.setStroke(Color.TRANSPARENT);
+        attackFillRand.setStrokeWidth(0);
+        attackFillRand.setStrokeType(StrokeType.INSIDE);
+
+        // DEFENSE BAR
+        defenseFillRand.setWidth(1);
+        defenseFillRand.setArcHeight(10);
+        defenseFillRand.setArcWidth(10);
+        defenseFillRand.setFill(Color.TRANSPARENT);
+        defenseFillRand.setStroke(Color.TRANSPARENT);
+        defenseFillRand.setStrokeWidth(0);
+        defenseFillRand.setStrokeType(StrokeType.INSIDE);
+
+        // SPEED BAR
+        speedFillRand.setWidth(1);
+        speedFillRand.setArcHeight(10);
+        speedFillRand.setArcWidth(10);
+        speedFillRand.setFill(Color.TRANSPARENT);
+        speedFillRand.setStroke(Color.TRANSPARENT);
+        speedFillRand.setStrokeWidth(0);
+        displayRandPokemon.setImage(null);
+
+        type1ChipRand.setVisible(false);
+        type2ChipRand.setVisible(false);
+        type1TextRand.setVisible(false);
+        type2TextRand.setVisible(false);
+    }
+
+    private void showRandMultiTypePokemon(Pokemon currentPokemon) {
         String[] types = currentPokemon.getType().split("/");
 
         switch (types[0]) {
@@ -456,10 +488,9 @@ public class AppController {
             }
         }
 
-        if(types[1].equals("Flying")){
+        if (types[1].equals("Flying")) {
             type2ChipRand.setFill(Color.POWDERBLUE);
-        }
-        else if(types[1].equals("Water")){
+        } else if (types[1].equals("Water")) {
             type2ChipRand.setFill(Color.DARKBLUE);
         }
 
@@ -472,7 +503,8 @@ public class AppController {
         type2TextRand.setVisible(true);
 
     }
-    private void showRandSingleTypePokemon(Pokemon currentPokemon){
+
+    private void showRandSingleTypePokemon(Pokemon currentPokemon) {
         System.out.println("Pokemon is type: " + currentPokemon.getType());
         switch (currentPokemon.getType()) {
             case "Water" -> {
@@ -509,10 +541,6 @@ public class AppController {
         type2ChipRand.setVisible(false);
     }
 
-
-    // END OF RANDOM PAGE
-
-    // SLIDESHOW PAGE
     private void showSlidePokemon(Pokemon currentPokemon) {
         displaySlideName.setText(currentPokemon.getName());
         displaySlideHeight.setText(currentPokemon.getHeight());
@@ -549,16 +577,16 @@ public class AppController {
         speedFillSlide.setStrokeType(StrokeType.INSIDE);
         displaySlidePokemon.setImage(new Image("file:src/main/resources/com/pierreparel/pokemoncardsjavafx/sprites/" + currentPokemon.getName().toLowerCase() + ".gif"));
 
-        if(currentPokemon.getMulticlass()){
+        if (currentPokemon.getMulticlass()) {
             System.out.println("MULTITYPE!");
             showSlideMultiTypePokemon(currentPokemon);
-        }
-        else{
+        } else {
             System.out.println("SINGLE TYPE!");
             showSlideSingleTypePokemon(currentPokemon);
         }
     }
-    private void showSlideSingleTypePokemon(Pokemon currentPokemon){
+
+    private void showSlideSingleTypePokemon(Pokemon currentPokemon) {
         System.out.println("Pokemon is type: " + currentPokemon.getType());
         switch (currentPokemon.getType()) {
             case "Water" -> {
@@ -594,7 +622,8 @@ public class AppController {
         type2TextSlide.setVisible(false);
         type2ChipSlide.setVisible(false);
     }
-    private void showSlideMultiTypePokemon(Pokemon currentPokemon){
+
+    private void showSlideMultiTypePokemon(Pokemon currentPokemon) {
         String[] types = currentPokemon.getType().split("/");
 
         switch (types[0]) {
@@ -624,10 +653,9 @@ public class AppController {
             }
         }
 
-        if(types[1].equals("Flying")){
+        if (types[1].equals("Flying")) {
             type2ChipSlide.setFill(Color.POWDERBLUE);
-        }
-        else if(types[1].equals("Water")){
+        } else if (types[1].equals("Water")) {
             type2ChipSlide.setFill(Color.DARKBLUE);
         }
 
@@ -640,12 +668,6 @@ public class AppController {
         type2TextSlide.setVisible(true);
 
     }
-
-    int i;
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-        showSlidePokemon(pokemonDeck.getPokemon(i));
-        i++;
-    }));
 
     public void startSlideshow() {
         i = 0;
